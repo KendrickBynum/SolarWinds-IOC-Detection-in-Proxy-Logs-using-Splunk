@@ -34,10 +34,18 @@ I ingested **SolarWinds IOC data** alongside **enterprise proxy logs**, created 
 - Used the `IP Address` field for correlation
 
 ```spl
-(index=main source="NetworkProxyLog02.csv") OR (index=main source="SolarWinds_IOCs.csv")
-| stats values(source) as sources, values("Computer Name") as ComputerName, values("User Agent String") as UserAgent, values(Date) as Date, values(Time) as Time by "IP Address"
+(index="main" source="SolarWindsIOCs.csv" OR source="NetworkProxyLog02.csv") sourcetype="csv"
+| rename "IP Address" AS ip
+| eval ip=lower(trim(ip))
+| stats values(source) AS sources,
+        values("Computer Name") AS ComputerName,
+        values("User Agent String") AS UserAgent,
+        values(Date) AS Date,
+        values(Time) AS Time
+  BY ip
 | where mvcount(sources) > 1
-| table "IP Address", ComputerName, UserAgent, Date, Time
+| table ip, ComputerName, UserAgent, Date, Time
+
 ```
 <img width="1919" height="955" alt="image" src="https://github.com/user-attachments/assets/a7af472e-eeb9-4f30-a8a5-37926911aef1" />
 
