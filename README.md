@@ -22,7 +22,8 @@ I ingested **SolarWinds IOC data** alongside **enterprise proxy logs**, created 
 
 📸 **Uploading CSV Logs into Splunk**
 
-![Upload Logs](./screenshots/upload-logs.png)
+![NetworkProxyLog02.csv](https://raw.githubusercontent.com/codepath/cyb102-file-storage/main/NetworkProxyLog02.csv
+)
 
 ---
 
