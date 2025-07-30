@@ -20,7 +20,7 @@ I ingested **SolarWinds IOC data** alongside **enterprise proxy logs**, created 
   - `NetworkProxyLog02.csv` – simulated enterprise proxy logs
   - `SolarWinds_IOCs.csv` – known malicious IPs and domains from the SolarWinds breach
 
-📸 **Raw URL to upload into Splunk**
+📸 **Downloadable CSVs (for Splunk ingestion)**
 
 [NetworkProxyLog02.csv](https://raw.githubusercontent.com/codepath/cyb102-file-storage/main/NetworkProxyLog02.csv
 )
@@ -34,6 +34,8 @@ I ingested **SolarWinds IOC data** alongside **enterprise proxy logs**, created 
 - Used the `IP Address` field for correlation
 
 ```spl
+# SPL Query to correlate IOC IPs with internal traffic
+
 (index="main" source="SolarWindsIOCs.csv" OR source="NetworkProxyLog02.csv") sourcetype="csv"
 | rename "IP Address" AS ip
 | eval ip=lower(trim(ip))
