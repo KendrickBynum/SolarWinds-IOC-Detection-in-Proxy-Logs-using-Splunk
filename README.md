@@ -30,11 +30,12 @@ I ingested **SolarWinds IOC data** alongside **enterprise proxy logs**, created 
 - Wrote SPL query to detect any internal machine reaching out to **SolarWinds IOC IPs**
 - Used the `IP Address` field for correlation
 
-spl
+```spl
 (index=main source="NetworkProxyLog02.csv") OR (index=main source="SolarWinds_IOCs.csv")
 | stats values(source) as sources, values("Computer Name") as ComputerName, values("User Agent String") as UserAgent, values(Date) as Date, values(Time) as Time by "IP Address"
 | where mvcount(sources) > 1
 | table "IP Address", ComputerName, UserAgent, Date, Time
+```
 
 ---
 
