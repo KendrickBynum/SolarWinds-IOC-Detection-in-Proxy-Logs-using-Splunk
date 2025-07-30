@@ -20,10 +20,11 @@ I ingested **SolarWinds IOC data** alongside **enterprise proxy logs**, created 
   - `NetworkProxyLog02.csv` – simulated enterprise proxy logs
   - `SolarWinds_IOCs.csv` – known malicious IPs and domains from the SolarWinds breach
 
-📸 **Uploading CSV Logs into Splunk**
+📸 **Raw URL to upload into Splunk**
 
-![NetworkProxyLog02.csv](https://raw.githubusercontent.com/codepath/cyb102-file-storage/main/NetworkProxyLog02.csv
+[NetworkProxyLog02.csv](https://raw.githubusercontent.com/codepath/cyb102-file-storage/main/NetworkProxyLog02.csv
 )
+[SolarWinds_IOC.csv](https://raw.githubusercontent.com/codepath/cyb102-file-storage/main/SolarWindsIOCs.csv)
 
 ---
 
@@ -37,6 +38,7 @@ I ingested **SolarWinds IOC data** alongside **enterprise proxy logs**, created 
 | where mvcount(sources) > 1
 | table "IP Address", ComputerName, UserAgent, Date, Time
 ```
+<img width="1919" height="955" alt="image" src="https://github.com/user-attachments/assets/a7af472e-eeb9-4f30-a8a5-37926911aef1" />
 
 ---
 
